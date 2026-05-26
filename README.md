@@ -221,9 +221,70 @@ import type { MultiCountryIndex } from "country-base/indexes/currency";
 - ESM and CommonJS support
 - Zero runtime dependencies
 
+## Performance
+
+`country-base` uses object-map lookups instead of repeated full-array scans.
+
+| Operation | Strategy | Complexity |
+|---|---:|---:|
+| Get country by ISO-2 | Object map | O(1) |
+| Find country in array | `Array.find()` | O(n) |
+| Get countries by currency | Prebuilt index | O(1) map access |
+
+Benchmarks were run on Node.js 24, Apple M2, May 2026.
+
+| Operation | Result |
+|---|---:|
+| Get country by ISO-2 | 42,219,240 ops/sec |
+| Find country in array | 4,452,274 ops/sec |
+| Get countries by currency | 156,914,233 ops/sec |
+
+Run locally:
+
+```bash
+npm run build
+npm run benchmark
+```
+
 ## Compared to Alternatives
 
 | Package | Lookup | TypeScript | Bundle strategy | Data source |
 |---|---:|---:|---:|---|
 | `country-base` | O(1) object maps | Yes | Separate importable indexes | ISO 3166 country data |
 | Many country packages | `Array.find()` / full-list scans | Partial | Usually loads full dataset | Varies |
+
+## country-base vs countries-list
+
+Use `country-base` when you need fast ISO-2 lookups and prebuilt secondary
+indexes for names, phone codes, currencies, subregions, and languages.
+
+Use `countries-list` when you prefer its specific data shape or already depend
+on its exported country records.
+
+## country-base vs world-countries
+
+Use `country-base` when lookup speed and TypeScript-friendly indexed access are
+the priority.
+
+Use `world-countries` when you need a raw country dataset in its format and do
+not need prebuilt lookup maps.
+
+## country-base vs country-state-city
+
+Use `country-base` when you only need country-level metadata.
+
+Use `country-state-city` when you need states, provinces, and cities in addition
+to countries.
+
+## When should I use country-base?
+
+Use `country-base` when you need:
+
+- O(1) ISO-2 country lookup
+- Separate importable indexes instead of loading every lookup map at once
+- TypeScript types bundled with the package
+- Country-level metadata for APIs, forms, checkout flows, validation, analytics,
+  or high-load services
+
+Use another dataset when you need city-level data, administrative subdivisions,
+or a different raw data schema.

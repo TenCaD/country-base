@@ -1,6 +1,6 @@
 {
   "name": "country-base",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Pre-indexed country data for high-load JavaScript and TypeScript projects.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -77,6 +77,7 @@
   ],
   "scripts": {
     "build": "node scripts/generate.mjs",
+    "benchmark": "node scripts/benchmark.mjs",
     "test": "npm run build && node test/smoke.mjs && node test/smoke.cjs && tsc -p tsconfig.types.json && tsc -p tsconfig.types.bundler.json",
     "prepack": "npm run build",
     "prepublishOnly": "npm test"
@@ -84,11 +85,33 @@
   "keywords": [
     "country",
     "countries",
+    "country-data",
+    "country-list",
     "iso",
+    "iso2",
+    "iso-2",
+    "iso3",
+    "iso-3",
     "iso3166",
+    "iso-3166",
+    "iso3166-1",
     "lookup",
-    "index"
+    "typescript",
+    "javascript",
+    "nodejs",
+    "node",
+    "esm",
+    "commonjs",
+    "currency",
+    "phone-code",
+    "calling-code",
+    "language",
+    "i18n",
+    "country-codes",
+    "countries-list",
+    "world-countries"
   ],
+  "author": "TenCaD",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/TenCaD/country-lookup.git"
