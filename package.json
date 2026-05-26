@@ -1,0 +1,99 @@
+{
+  "name": "country-lookup",
+  "version": "1.0.0",
+  "description": "Pre-indexed country data for high-load JavaScript and TypeScript projects.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./data": {
+      "types": "./dist/data.d.ts",
+      "import": "./dist/data.mjs",
+      "require": "./dist/data.cjs"
+    },
+    "./indexes": {
+      "types": "./dist/indexes/index.d.ts",
+      "import": "./dist/indexes/index.mjs",
+      "require": "./dist/indexes/index.cjs"
+    },
+    "./indexes/iso2": {
+      "types": "./dist/indexes/iso2.d.ts",
+      "import": "./dist/indexes/iso2.mjs",
+      "require": "./dist/indexes/iso2.cjs"
+    },
+    "./indexes/iso3": {
+      "types": "./dist/indexes/iso3.d.ts",
+      "import": "./dist/indexes/iso3.mjs",
+      "require": "./dist/indexes/iso3.cjs"
+    },
+    "./indexes/name-full": {
+      "types": "./dist/indexes/name-full.d.ts",
+      "import": "./dist/indexes/name-full.mjs",
+      "require": "./dist/indexes/name-full.cjs"
+    },
+    "./indexes/name-simple": {
+      "types": "./dist/indexes/name-simple.d.ts",
+      "import": "./dist/indexes/name-simple.mjs",
+      "require": "./dist/indexes/name-simple.cjs"
+    },
+    "./indexes/phone": {
+      "types": "./dist/indexes/phone.d.ts",
+      "import": "./dist/indexes/phone.mjs",
+      "require": "./dist/indexes/phone.cjs"
+    },
+    "./indexes/currency": {
+      "types": "./dist/indexes/currency.d.ts",
+      "import": "./dist/indexes/currency.mjs",
+      "require": "./dist/indexes/currency.cjs"
+    },
+    "./indexes/subregion": {
+      "types": "./dist/indexes/subregion.d.ts",
+      "import": "./dist/indexes/subregion.mjs",
+      "require": "./dist/indexes/subregion.cjs"
+    },
+    "./indexes/language-code": {
+      "types": "./dist/indexes/language-code.d.ts",
+      "import": "./dist/indexes/language-code.mjs",
+      "require": "./dist/indexes/language-code.cjs"
+    },
+    "./indexes/language-name": {
+      "types": "./dist/indexes/language-name.d.ts",
+      "import": "./dist/indexes/language-name.mjs",
+      "require": "./dist/indexes/language-name.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/generate.mjs",
+    "test": "npm run build && node test/smoke.mjs && node test/smoke.cjs && tsc -p tsconfig.types.json && tsc -p tsconfig.types.bundler.json",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "country",
+    "countries",
+    "iso",
+    "iso3166",
+    "lookup",
+    "index"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,31 @@
+import {
+  countries,
+  countryCodes,
+  getCountryByIso2,
+  normalizeKey,
+  type Country,
+  type CountryCodeIso2
+} from "country-lookup";
+import { countriesByIso2 } from "country-lookup/data";
+import { currency, type MultiCountryIndex } from "country-lookup/indexes/currency";
+import { iso3, type SingleCountryIndex } from "country-lookup/indexes/iso3";
+import { nameSimple } from "country-lookup/indexes/name-simple";
+
+const code: CountryCodeIso2 = iso3.USA;
+const country: Country | undefined = getCountryByIso2(code);
+const directCountry: Country | undefined = countriesByIso2.US;
+const countryList: readonly Country[] = countries;
+const codeList: readonly CountryCodeIso2[] = countryCodes;
+const currencyIndex: MultiCountryIndex = currency;
+const iso3Index: SingleCountryIndex = iso3;
+const countriesByName: readonly CountryCodeIso2[] | undefined = nameSimple[normalizeKey("United States")];
+const missingCurrency: readonly CountryCodeIso2[] | undefined = currency.NOPE;
+
+void country;
+void directCountry;
+void countryList;
+void codeList;
+void currencyIndex;
+void iso3Index;
+void countriesByName;
+void missingCurrency;
