@@ -89,6 +89,14 @@
     "lookup",
     "index"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/TenCaD/country-lookup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TenCaD/country-lookup/issues"
+  },
+  "homepage": "https://github.com/TenCaD/country-lookup#readme",
   "license": "MIT",
   "engines": {
     "node": ">=18"
