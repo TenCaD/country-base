@@ -224,20 +224,22 @@ import type { MultiCountryIndex } from "country-base/indexes/currency";
 ## Performance
 
 `country-base` uses object-map lookups instead of repeated full-array scans.
+The `Array.find()` row below is a baseline for raw array datasets, not the
+internal implementation of `country-base`.
 
-| Operation | Strategy | Complexity |
-|---|---:|---:|
-| Get country by ISO-2 | Object map | O(1) |
-| Find country in array | `Array.find()` | O(n) |
-| Get countries by currency | Prebuilt index | O(1) map access |
+| Scenario | Example | Strategy | Complexity |
+|---|---|---:|---:|
+| `country-base` ISO-2 lookup | `getCountryByIso2("US")` | Object map | O(1) |
+| Raw array dataset lookup | `countries.find((c) => c.cca2 === "US")` | Full-array scan | O(n) |
+| `country-base` currency lookup | `currency.USD` | Prebuilt index | O(1) map access |
 
 Benchmarks were run on Node.js 24, Apple M2, May 2026.
 
-| Operation | Result |
+| Scenario | Result |
 |---|---:|
-| Get country by ISO-2 | 42,219,240 ops/sec |
-| Find country in array | 4,452,274 ops/sec |
-| Get countries by currency | 156,914,233 ops/sec |
+| `country-base` ISO-2 object-map lookup | 40,143,970 ops/sec |
+| Baseline manual `Array.find()` lookup | 4,498,170 ops/sec |
+| `country-base` currency prebuilt-index lookup | 133,276,618 ops/sec |
 
 Run locally:
 
@@ -248,10 +250,11 @@ npm run benchmark
 
 ## Compared to Alternatives
 
-| Package | Lookup | TypeScript | Bundle strategy | Data source |
+| Package style | ISO-2 lookup | Secondary lookups | TypeScript | Bundle strategy |
 |---|---:|---:|---:|---|
-| `country-base` | O(1) object maps | Yes | Separate importable indexes | ISO 3166 country data |
-| Many country packages | `Array.find()` / full-list scans | Partial | Usually loads full dataset | Varies |
+| `country-base` | O(1) object map | Prebuilt indexes | Yes | Separate importable indexes |
+| Raw country array packages | Usually `Array.find()` / manual scan | Usually manual filtering | Varies | Usually full dataset |
+| Country/state/city datasets | Varies | Often optimized for hierarchy, not country-only lookup | Varies | Larger data surface |
 
 ## country-base vs countries-list
 

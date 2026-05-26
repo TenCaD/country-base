@@ -5,19 +5,19 @@ const iterations = 5_000_000;
 
 const cases = [
   {
-    name: "get country by ISO-2",
+    name: "country-base: ISO-2 object-map lookup",
     run() {
       return getCountryByIso2("US");
     }
   },
   {
-    name: "find country in array",
+    name: "baseline: manual Array.find() lookup",
     run() {
       return countries.find((country) => country.cca2 === "US");
     }
   },
   {
-    name: "get countries by currency",
+    name: "country-base: currency prebuilt-index lookup",
     run() {
       return currency.USD;
     }
