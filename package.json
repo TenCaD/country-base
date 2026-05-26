@@ -1,6 +1,6 @@
 {
   "name": "country-base",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Pre-indexed country data for high-load JavaScript and TypeScript projects.",
   "type": "module",
   "main": "./dist/index.cjs",
