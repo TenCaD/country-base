@@ -1,4 +1,4 @@
-import type { MultiCountryIndex, SingleCountryIndex } from "country-lookup";
+import type { MultiCountryIndex, SingleCountryIndex } from "country-base";
 
 export declare const iso2: SingleCountryIndex;
 export declare const iso3: SingleCountryIndex;

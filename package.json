@@ -1,5 +1,5 @@
 {
-  "name": "country-lookup",
+  "name": "country-base",
   "version": "1.0.0",
   "description": "Pre-indexed country data for high-load JavaScript and TypeScript projects.",
   "type": "module",

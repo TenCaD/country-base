@@ -1,13 +1,13 @@
-# country-lookup
+# country-base
 
 Pre-indexed country data for high-load JavaScript and TypeScript projects.
 
 The package avoids repeated `Array.find()` scans. Countries are stored by ISO-2
 code, and every secondary lookup is shipped as a separate importable index.
 
-## What is country-lookup?
+## What is country-base?
 
-`country-lookup` is a zero-dependency TypeScript/JavaScript library for fast
+`country-base` is a zero-dependency TypeScript/JavaScript library for fast
 country lookups.
 
 It provides ready-to-use country data indexed by ISO-2 code, plus optional
@@ -21,13 +21,13 @@ too wasteful.
 ## Install
 
 ```bash
-npm install country-lookup
+npm install country-base
 ```
 
 ## Basic Usage
 
 ```ts
-import { getCountryByIso2 } from "country-lookup";
+import { getCountryByIso2 } from "country-base";
 
 const country = getCountryByIso2("us");
 
@@ -41,7 +41,7 @@ console.log(country?.cca2, country?.cca3);
 ## All Countries
 
 ```ts
-import { countries } from "country-lookup";
+import { countries } from "country-base";
 
 console.log(countries.length);
 // 250
@@ -59,11 +59,11 @@ for (const country of countries) {
 
 The root import loads the full country dataset keyed by ISO-2 and exposes the
 shared all-countries array. Secondary lookup indexes are loaded only when you
-import their `country-lookup/indexes/*` entrypoints.
+import their `country-base/indexes/*` entrypoints.
 
 ```ts
-import { iso3 } from "country-lookup/indexes/iso3";
-import { countriesByIso2 } from "country-lookup/data";
+import { iso3 } from "country-base/indexes/iso3";
+import { countriesByIso2 } from "country-base/data";
 
 const iso2 = iso3.USA;
 const country = iso2 ? countriesByIso2[iso2] : undefined;
@@ -78,10 +78,10 @@ console.log(country?.name.official);
 ## Separate Indexes
 
 ```ts
-import { nameSimple } from "country-lookup/indexes/name-simple";
-import { phone } from "country-lookup/indexes/phone";
-import { currency } from "country-lookup/indexes/currency";
-import { normalizeKey } from "country-lookup";
+import { nameSimple } from "country-base/indexes/name-simple";
+import { phone } from "country-base/indexes/phone";
+import { currency } from "country-base/indexes/currency";
+import { normalizeKey } from "country-base";
 
 const byName = nameSimple[normalizeKey("United States")];
 const byPhone = phone["+1"];
@@ -187,17 +187,17 @@ Available indexes:
 
 | Import | Key format | Value |
 |---|---|---|
-| `country-lookup/indexes/iso2` | ISO-2 code, for example `US` | `CountryCodeIso2` |
-| `country-lookup/indexes/iso3` | ISO-3 code, for example `USA` | `CountryCodeIso2` |
-| `country-lookup/indexes/name-full` | `normalizeKey(...)` result | `CountryCodeIso2[]` |
-| `country-lookup/indexes/name-simple` | `normalizeKey(...)` result | `CountryCodeIso2[]` |
-| `country-lookup/indexes/phone` | exact calling code with or without `+` | `CountryCodeIso2[]` |
-| `country-lookup/indexes/currency` | currency code, for example `USD` | `CountryCodeIso2[]` |
-| `country-lookup/indexes/subregion` | `normalizeKey(...)` result | `CountryCodeIso2[]` |
-| `country-lookup/indexes/language-code` | language code, for example `eng` | `CountryCodeIso2[]` |
-| `country-lookup/indexes/language-name` | `normalizeKey(...)` result | `CountryCodeIso2[]` |
+| `country-base/indexes/iso2` | ISO-2 code, for example `US` | `CountryCodeIso2` |
+| `country-base/indexes/iso3` | ISO-3 code, for example `USA` | `CountryCodeIso2` |
+| `country-base/indexes/name-full` | `normalizeKey(...)` result | `CountryCodeIso2[]` |
+| `country-base/indexes/name-simple` | `normalizeKey(...)` result | `CountryCodeIso2[]` |
+| `country-base/indexes/phone` | exact calling code with or without `+` | `CountryCodeIso2[]` |
+| `country-base/indexes/currency` | currency code, for example `USD` | `CountryCodeIso2[]` |
+| `country-base/indexes/subregion` | `normalizeKey(...)` result | `CountryCodeIso2[]` |
+| `country-base/indexes/language-code` | language code, for example `eng` | `CountryCodeIso2[]` |
+| `country-base/indexes/language-name` | `normalizeKey(...)` result | `CountryCodeIso2[]` |
 
-`country-lookup/indexes` imports all indexes at once.
+`country-base/indexes` imports all indexes at once.
 
 Countries without a `subregion` value are not included in the `subregion`
 index.
@@ -207,8 +207,8 @@ index.
 Types are included. No extra `@types/*` package is required.
 
 ```ts
-import type { Country, CountryCodeIso2 } from "country-lookup";
-import type { MultiCountryIndex } from "country-lookup/indexes/currency";
+import type { Country, CountryCodeIso2 } from "country-base";
+import type { MultiCountryIndex } from "country-base/indexes/currency";
 ```
 
 ## Key Features
@@ -225,5 +225,5 @@ import type { MultiCountryIndex } from "country-lookup/indexes/currency";
 
 | Package | Lookup | TypeScript | Bundle strategy | Data source |
 |---|---:|---:|---:|---|
-| `country-lookup` | O(1) object maps | Yes | Separate importable indexes | ISO 3166 country data |
+| `country-base` | O(1) object maps | Yes | Separate importable indexes | ISO 3166 country data |
 | Many country packages | `Array.find()` / full-list scans | Partial | Usually loads full dataset | Varies |

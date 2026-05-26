@@ -5,11 +5,11 @@ import {
   normalizeKey,
   type Country,
   type CountryCodeIso2
-} from "country-lookup";
-import { countriesByIso2 } from "country-lookup/data";
-import { currency, type MultiCountryIndex } from "country-lookup/indexes/currency";
-import { iso3, type SingleCountryIndex } from "country-lookup/indexes/iso3";
-import { nameSimple } from "country-lookup/indexes/name-simple";
+} from "country-base";
+import { countriesByIso2 } from "country-base/data";
+import { currency, type MultiCountryIndex } from "country-base/indexes/currency";
+import { iso3, type SingleCountryIndex } from "country-base/indexes/iso3";
+import { nameSimple } from "country-base/indexes/name-simple";
 
 const code: CountryCodeIso2 = iso3.USA;
 const country: Country | undefined = getCountryByIso2(code);

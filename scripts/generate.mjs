@@ -123,7 +123,7 @@ await mkdir(indexesDir, { recursive: true });
 await writeModulePair("data", "countriesByIso2", byIso2, {
   defaultName: "countriesByIso2",
   dts: [
-    'import type { Country, CountryCodeIso2 } from "country-lookup";',
+    'import type { Country, CountryCodeIso2 } from "country-base";',
     "export declare const countriesByIso2: Readonly<Record<CountryCodeIso2, Country>>;",
     "export declare const countries: readonly Country[];",
     "export declare const countryCodes: readonly CountryCodeIso2[];",
@@ -196,7 +196,7 @@ function indexDts(fileName, exportName) {
   const type = ["iso2", "iso3"].includes(fileName) ? "SingleCountryIndex" : "MultiCountryIndex";
   const keyType = knownIndexKeyType(fileName);
   return [
-    `import type { ${type}, CountryCodeIso2, CountryCodeIso3 } from "country-lookup";`,
+    `import type { ${type}, CountryCodeIso2, CountryCodeIso3 } from "country-base";`,
     `export declare const ${exportName}: ${type}<${keyType}>;`,
     `export default ${exportName};`,
     `export type { ${type} };`
@@ -395,7 +395,7 @@ module.exports = {
 }
 
 function allIndexesDts() {
-  return `import type { MultiCountryIndex, SingleCountryIndex } from "country-lookup";
+  return `import type { MultiCountryIndex, SingleCountryIndex } from "country-base";
 
 export declare const iso2: SingleCountryIndex;
 export declare const iso3: SingleCountryIndex;
