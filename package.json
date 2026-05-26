@@ -114,12 +114,12 @@
   "author": "TenCaD",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/TenCaD/country-lookup.git"
+    "url": "git+ssh://git@github.com/TenCaD/country-base.git"
   },
   "bugs": {
-    "url": "https://github.com/TenCaD/country-lookup/issues"
+    "url": "https://github.com/TenCaD/country-base/issues"
   },
-  "homepage": "https://github.com/TenCaD/country-lookup#readme",
+  "homepage": "https://github.com/TenCaD/country-base#readme",
   "license": "MIT",
   "engines": {
     "node": ">=18"
